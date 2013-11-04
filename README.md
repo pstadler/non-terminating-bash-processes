@@ -15,7 +15,7 @@ $ whatis dns-sd
 dns-sd(1)            - Multicast DNS (mDNS) & DNS Service Discovery (DNS-SD) Test Tool
 ```
 
-The [man page](https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man1/dns-sd.1.html) revealed that `dns-sd -B type domain` will "browse for instances of service type in domain". After some research I figured out that the service type for VNC is *_rfb._tcp*.
+The [man page](https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man1/dns-sd.1.html) revealed that `dns-sd -B type domain` will "browse for instances of service type in domain". After some research I figured out that the service type for VNC is *\_rfb.\_tcp*.
 
 ```
 # /etc/services contains a list of service types mapped to ports and protocols:
