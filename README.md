@@ -44,7 +44,7 @@ The problem is that `dns-sd -B` never terminates. It will continue to display ch
 ```bash
 #!/bin/bash
 while read -r line; do # trapped in the loop
-	echo $line
+    echo $line
 done < <(dns-sd -B _rfb._tcp)
 
 echo "This is never gonna be displayed."
@@ -59,12 +59,12 @@ while read -r line; do
     i=`expr $i + 1`
     if [ $i -lt 5 ]; then continue; fi # skip the header lines
 
-	echo $line
+    echo $line
 
-	# break if no more items will follow (e.g. Flags != 3)
-	if [ $(echo $line | cut -d ' ' -f 3) -ne '3' ]; then
-		break
-	fi
+    # break if no more items will follow (e.g. Flags != 3)
+    if [ $(echo $line | cut -d ' ' -f 3) -ne '3' ]; then
+        break
+    fi
 done < <(dns-sd -B _rfb._tcp)
 
 echo "This _is_ displayed."
@@ -83,12 +83,12 @@ while read -r line; do
     i=`expr $i + 1`
     if [ $i -lt 5 ]; then continue; fi # skip the header lines
 
-	echo $line
+    echo $line
 
-	# break if no more items will follow (e.g. Flags != 3)
-	if [ $(echo $line | cut -d ' ' -f 3) -ne '3' ]; then
-		break
-	fi
+    # break if no more items will follow (e.g. Flags != 3)
+    if [ $(echo $line | cut -d ' ' -f 3) -ne '3' ]; then
+        break
+    fi
 done < <(dns-sd -B _rfb._tcp)
 
 # kill child processes
@@ -119,12 +119,12 @@ while read -r line; do
     i=`expr $i + 1`
     if [ $i -lt 5 ]; then continue; fi # skip the header lines
 
-	echo $line
+    echo $line
 
-	# break if no more items will follow (e.g. Flags != 3)
-	if [ $(echo $line | cut -d ' ' -f 3) -ne '3' ]; then
-		break
-	fi
+    # break if no more items will follow (e.g. Flags != 3)
+    if [ $(echo $line | cut -d ' ' -f 3) -ne '3' ]; then
+        break
+    fi
 done < <(dns-sd -B _rfb._tcp)
 
 # kill child processes
@@ -155,14 +155,14 @@ while read -r line; do
     i=`expr $i + 1`
     if [ $i -lt 5 ]; then continue; fi # skip the header lines
 
-	echo $line
+    echo $line
 
-	# break if no more items will follow (e.g. Flags != 3)
-	if [ $(echo $line | cut -d ' ' -f 3) -ne '3' ]; then
-		break
-	fi
+    # break if no more items will follow (e.g. Flags != 3)
+    if [ $(echo $line | cut -d ' ' -f 3) -ne '3' ]; then
+        break
+    fi
 done < <((sleep 0.5; kill -13 0) & # kill quickly if trapped
-			dns-sd -B _rfb._tcp)
+            dns-sd -B _rfb._tcp)
 
 # kill child processes
 kill -13 0
@@ -178,7 +178,7 @@ For being able to run code before exiting the script we can define a `trap`. Thi
 #!/bin/bash
 
 trap '{
-	# this block gets called before exit
+    # this block gets called before exit
     if [ -z "$out" ]; then
         echo "No hosts with VNC enabled found."
         exit 0
@@ -193,14 +193,14 @@ while read -r line; do
     i=`expr $i + 1`
     if [ $i -lt 5 ]; then continue; fi # skip the header lines
 
-	out+=("$line")
+    out+=("$line")
 
-	# break if no more items will follow (e.g. Flags != 3)
-	if [ $(echo $line | cut -d ' ' -f 3) -ne '3' ]; then
-		break
-	fi
+    # break if no more items will follow (e.g. Flags != 3)
+    if [ $(echo $line | cut -d ' ' -f 3) -ne '3' ]; then
+        break
+    fi
 done < <((sleep 0.5; kill -13 0) & # kill quickly if trapped
-			dns-sd -B _rfb._tcp)
+            dns-sd -B _rfb._tcp)
 
 # kill child processes
 kill -13 0
