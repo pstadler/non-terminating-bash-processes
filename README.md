@@ -101,7 +101,7 @@ Success! No more background processes after exit. However, there's this nasty pr
 $ ./discover-vnc.sh # contains the code above
 13:07:12.542 Add 3 4 local. _rfb._tcp. Brainbug
 13:07:12.542 Add 2 4 local. _rfb._tcp. Tesla
-[1]    58181 killed     ./foo.sh
+[1]    58181 killed     ./discover-vnc.sh
 ```
 
 It's crucial to suppress this line. Doing some research on the topic revealed the following:
