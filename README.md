@@ -1,6 +1,6 @@
 # Taming non-terminating Bash processes
 
-A couple of months ago I found myself hacking on a sophisticated workflow for the brand new [Alfred 2](http://www.alfredapp.com/) - a powerful replacment for Spotlight on OS X. This major release enabled scripting support for populating Alfred's list of "search" results.
+A couple of months ago I found myself hacking on a sophisticated workflow for the brand new [Alfred 2](http://www.alfredapp.com/) - a powerful replacement for Spotlight on OS X. This major release enabled scripting support for populating Alfred's list of "search" results.
 
 My goal was to make screen sharing with Alfred a quick and painless endeavor. The user would enter "vnc" to get a list of available hosts with VNC enabled to choose from. The workflow should run on every OS X device without installing any kind of 3rd party software and leaving no side-effects — a simple Bash script should be perfect.
 
