@@ -209,7 +209,7 @@ exit 0
 At this point we're done. To run the above script paste the following line into your terminal:
 
 ```
-bash <(curl -s https://github.com/pstadler/non-terminating-bash-processes/discover-vnc.sh)
+bash <(curl -s https://raw.github.com/pstadler/non-terminating-bash-processes/master/discover-vnc.sh)
 ```
 
 This approach is being used in the following projects:
