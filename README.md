@@ -24,7 +24,7 @@ rfb             5900/tcp    vnc-server # VNC Server
 rfb             5900/udp    vnc-server # VNC Server
 ```
 
-In case you're wondering, *rfb* stands for *remote frame buffer*. Running `dns-sd -B _rfb._tcp` and...
+In case you're wondering, *rfb* stands for *remote framebuffer*. Running `dns-sd -B _rfb._tcp` and...
 
 ```
 Browsing for _rfb._tcp
