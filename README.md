@@ -35,7 +35,7 @@ Timestamp     A/R    Flags  if Domain               Service Type         Instanc
 11:43:44.910  Add        2   4 local.               _rfb._tcp.           Tesla
 ```
 
-Bingo, that's it! 
+Bingo, that's it!
 
 ## The never-ending loop
 
@@ -58,9 +58,9 @@ i=0
 while read -r line; do
     i=`expr $i + 1`
     if [ $i -lt 5 ]; then continue; fi # skip the header lines
-    
+
 	echo $line
-	
+
 	# break if no more items will follow (e.g. Flags != 3)
 	if [ $(echo $line | cut -d ' ' -f 3) -ne '3' ]; then
 		break
@@ -82,9 +82,9 @@ i=0
 while read -r line; do
     i=`expr $i + 1`
     if [ $i -lt 5 ]; then continue; fi # skip the header lines
-    
+
 	echo $line
-	
+
 	# break if no more items will follow (e.g. Flags != 3)
 	if [ $(echo $line | cut -d ' ' -f 3) -ne '3' ]; then
 		break
@@ -118,9 +118,9 @@ i=0
 while read -r line; do
     i=`expr $i + 1`
     if [ $i -lt 5 ]; then continue; fi # skip the header lines
-    
+
 	echo $line
-	
+
 	# break if no more items will follow (e.g. Flags != 3)
 	if [ $(echo $line | cut -d ' ' -f 3) -ne '3' ]; then
 		break
@@ -142,7 +142,7 @@ $ ps aux |grep dns-sd
 # no matching processes found
 ```
 
-There's still one more problem to solve. If there's no VNC service available `dns-sd` won't return a line for us to check the Flags column for value != 3, therefore the loop will never break and the script will run forever. 
+There's still one more problem to solve. If there's no VNC service available `dns-sd` won't return a line for us to check the Flags column for value != 3, therefore the loop will never break and the script will run forever.
 
 ## Still trapped in the loop
 
@@ -154,9 +154,9 @@ i=0
 while read -r line; do
     i=`expr $i + 1`
     if [ $i -lt 5 ]; then continue; fi # skip the header lines
-    
+
 	echo $line
-	
+
 	# break if no more items will follow (e.g. Flags != 3)
 	if [ $(echo $line | cut -d ' ' -f 3) -ne '3' ]; then
 		break
@@ -180,6 +180,7 @@ For being able to run code before exiting the script we can define a `trap`. Thi
 trap '{
 	# this block gets called before exit
     if [ -z "$out" ]; then
+        echo "No hosts with VNC enabled found."
         exit 0
     fi
     # some time consuming calulations might be done here

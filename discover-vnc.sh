@@ -3,6 +3,7 @@
 trap '{
 	# this block gets called before exit
     if [ -z "$out" ]; then
+        echo "No hosts with VNC enabled found."
         exit 0
     fi
     # some time consuming calulations might be done here
