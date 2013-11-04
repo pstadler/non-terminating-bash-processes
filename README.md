@@ -41,7 +41,7 @@ Bingo, that's it!
 
 The problem is that `dns-sd -B` never terminates. It will continue to display changes in network services forever until you interrupt it (e.g Ctrl+c).
 
-```
+```bash
 #!/bin/bash
 while read -r line; do # trapped in the loop
 	echo $line
@@ -52,7 +52,7 @@ echo "This is never gonna be displayed."
 
 We have to break out of the loop at some point. Digging a little bit further unveils that `dns-sd` will send a "3" in the "Flags" column if there's more to display (see output above). In any other case there will be a different value, so let's skip the header and check for the flag in the subsequent lines.
 
-```
+```bash
 #!/bin/bash
 i=0
 while read -r line; do
@@ -76,7 +76,7 @@ This breaks out of the loop but `dns-sd` continues to run in a subshell (`<(dns-
 
 Nothing simpler than that. Let's just kill the child process before exiting the script.
 
-```
+```bash
 #!/bin/bash
 i=0
 while read -r line; do
@@ -112,7 +112,7 @@ independent of job control."
 
 SIGKILL is too verbose, SIGINT is too soft, let's hope that SIGPIPE (-13) will do the trick.
 
-```
+```bash
 #!/bin/bash
 i=0
 while read -r line; do
@@ -148,7 +148,7 @@ There's still one more problem to solve. If there's no VNC service available `dn
 
 The nature of `dns-sd` prevents us from breaking the loop in this case but if there are results they are returned almost instantly (they're probably kept in memory). Due to this fact we can assume that after a couple of hundred milliseconds there won't be any results any time soon and we can kill the script after a short period. To achieve this we use `sleep` as a timer followed by a `kill`.
 
-```
+```bash
 #!/bin/bash
 i=0
 while read -r line; do
@@ -174,7 +174,7 @@ A new child process (`(sleep 0.5; kill -13 0) &`) is now running in the backgrou
 
 For being able to run code before exiting the script we can define a `trap`. This is helpful if we want to run some more logic on the results which might take longer than 500ms and would be brutally killed by our timer.
 
-```
+```bash
 #!/bin/bash
 
 trap '{
