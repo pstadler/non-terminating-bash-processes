@@ -1,6 +1,8 @@
 # Taming non-terminating Bash processes
 
-A couple of months ago I found myself hacking on a sophisticated workflow for the brand new [Alfred 2](http://www.alfredapp.com/) - a powerful replacement for Spotlight on OS X. This major release enabled scripting support for populating Alfred's list of "search" results.
+> "[This is] bash voodoo magic.. the same magic that gave us shellshock." — [Hacker News](https://news.ycombinator.com/item?id=8578072)
+
+A couple of months ago I found myself hacking on a sophisticated workflow for the brand new [Alfred 2](http://www.alfredapp.com/) - a powerful replacement for Spotlight on OS X. This major release enabled support for populating Alfred's results using scripting languages.
 
 My goal was to make screen sharing with Alfred a quick and painless endeavor. The user would enter "vnc" to get a list of available hosts with VNC enabled to choose from. The workflow should run on every OS X device without installing any kind of 3rd party software and leaving no side-effects — a simple Bash script should be perfect.
 
@@ -221,6 +223,6 @@ This approach is being used in the following projects:
 
 ## Conclusion
 
-Advanced Bash scripting can cause nasty hacks and unexpected side-effects but there's always a way to work around them. Many ways lead to rome and there could be a more sane way to achieve the same.
+Advanced Bash scripting can cause nasty hacks and unexpected side-effects but there's always a way to work around them. Many ways lead to rome and there could be a more sane way to achieve the same. Make sure to check out this [discussion](https://news.ycombinator.com/item?id=8577729) on Hacker News.
 
 Please get in touch with me if you have any questions or suggestions related to this topic. You can find me on [Twitter](https://twitter.com/pstadler) and [GitHub](https://github.com/pstadler).
