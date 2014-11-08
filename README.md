@@ -217,6 +217,7 @@ This approach is being used in the following projects:
 
 - [Screen Sharing for Alfred](https://github.com/pstadler/alfred-screensharing) — Connect to a host in Alfred with automatic network discovery.
 - [Mount Network Shares with Alfred](https://github.com/pstadler/alfred-mount) — Use Alfred to connect to your network shares with ease.
+- [AirControl](https://github.com/AdRoll/AirControl) — Controlling AirPlay Display Mirroring from the command line.
 
 ## Conclusion
 
