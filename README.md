@@ -94,7 +94,7 @@ while read -r line; do
 done < <(dns-sd -B _rfb._tcp)
 
 # kill child processes
-kill -9 0 # SIGINT is not enough, let's send SIGKILL
+kill -9 $(pgrep dns-sd) # SIGINT is not enough, let's send SIGKILL
 ```
 
 Success! No more background processes after exit. However, there's this nasty problem with SIGKILL's verbose nature.
@@ -130,7 +130,7 @@ while read -r line; do
 done < <(dns-sd -B _rfb._tcp)
 
 # kill child processes
-kill -13 0 # SIGPIPE to the rescue
+kill -13 $(pgrep dns-sd) # SIGPIPE to the rescue
 ```
 
 It does the trick. The child process gets killed while the termination message is suppressed:
@@ -163,14 +163,14 @@ while read -r line; do
     if [ $(echo $line | cut -d ' ' -f 3) -ne '3' ]; then
         break
     fi
-done < <((sleep 0.5; kill -13 0) & # kill quickly if trapped
+done < <((sleep 0.5; pgrep -q dns-sd && kill -13 $(pgrep dns-sd)) & # kill quickly if trapped
             dns-sd -B _rfb._tcp)
 
 # kill child processes
-kill -13 0
+pgrep -q dns-sd && kill -13 $(pgrep dns-sd)
 ```
 
-A new child process (`(sleep 0.5; kill -13 0) &`) is now running in the background followed by the `dns-sd` process. After 500ms it sends a SIGPIPE and the script will exit, no matter what. It's important to remember that any code after the loop is not executed in this case, as the script is terminated while still being trapped in the loop.
+A new child process (`(sleep 0.5; pgrep -q dns-sd && kill -13 $(pgrep dns-sd)) &`) is now running in the background followed by the `dns-sd` process. After 500ms it sends a SIGPIPE and the script will exit, no matter what. It's important to remember that any code after the loop is not executed in this case, as the script is terminated while still being trapped in the loop.
 
 ## Do some work before termination
 
@@ -201,11 +201,11 @@ while read -r line; do
     if [ $(echo $line | cut -d ' ' -f 3) -ne '3' ]; then
         break
     fi
-done < <((sleep 0.5; kill -13 0) & # kill quickly if trapped
+done < <((sleep 0.5; pgrep -q dns-sd && kill -13 $(pgrep dns-sd)) & # kill quickly if trapped
             dns-sd -B _rfb._tcp)
 
 # kill child processes
-kill -13 0
+pgrep -q dns-sd && kill -13 $(pgrep dns-sd)
 exit 0
 ```
 
