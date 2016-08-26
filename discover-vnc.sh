@@ -22,9 +22,9 @@ while read -r line; do
     if [ $(echo $line | cut -d ' ' -f 3) -ne '3' ]; then
         break
     fi
-done < <((sleep 0.5; kill -13 0) & # kill quickly if trapped
+done < <((sleep 0.5; pgrep -q dns-sd && kill -13 $(pgrep dns-sd)) & # kill quickly if trapped
             dns-sd -B _rfb._tcp)
 
-# kill child processes
-kill -13 0
+# kill dns-sd child process
+pgrep -q dns-sd && kill -13 $(pgrep dns-sd)
 exit 0
